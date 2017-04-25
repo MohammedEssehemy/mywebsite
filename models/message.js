@@ -1,8 +1,18 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const config = require('config');
 
 const MessageSchema = mongoose.Schema({
+    username:{
+        type:String,
+        required: true
+    },
+   email: {
+        type: String,
+        required: true
+    },
+    time: {
+        type: Date,
+        default: Date.now
+    },
     title: {
         type: String,
         required: true
@@ -10,14 +20,6 @@ const MessageSchema = mongoose.Schema({
     body: {
         type: String,
         required: true
-    },
-    updated: {
-        type: Date,
-        default: Date.now
-    },
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
     }
 });
 module.exports = mongoose.model('Message', MessageSchema);

@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 // stay with the query string form not qs
 app.use(bodyParser.urlencoded({extended: false}));
 // favicon in public/favicon.ico
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // express static folder (public)
 app.use(express.static(path.join(__dirname, 'public')));
 
