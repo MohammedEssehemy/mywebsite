@@ -105,6 +105,8 @@ router.post('/register', (req, res, next) => {
 
 })
 
+// admin area 
+/// Authentication middleware allow admins only
 router.use((req, res, next) => {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
     if (token) {
@@ -136,7 +138,6 @@ router.use((req, res, next) => {
     }
 });
 
-// admin area 
 
 //get specific users
 router.get('/:id', (req, res, next) => {
@@ -147,7 +148,8 @@ router.get('/:id', (req, res, next) => {
                 success: true,
                 user: {
                     id: user._id,
-                    username: user.username
+                    username: user.username,
+                    email: user.email
                 }
             });
         }
@@ -161,13 +163,76 @@ router.get('/:id', (req, res, next) => {
 
 //delete users
 router.delete('/:id', (req, res, next) => {
-    res.send('protected route: delete user here');
+    User.findByIdAndRemove(req.params.id, (err, user) => {
+        if (err) console.error(err);
+        if (user) {
+            return res.json({
+                success: true,
+                user: {
+                    id: user._id,
+                    username: user.username,
+                    email: user.email
+                }
+            })
+        }
+        res.json({
+            success: false,
+            msg: 'user not found',
+        })
+    });
 })
 
 //edit users
 router.put('/:id', (req, res, next) => {
-    res.send('protected route: edit user here');
+    User.findByIdAndUpdate(req.params.id, {
+        $set: {
+            email: req.body.email
+        }
+    }, {
+        new: true
+    }, (err, user) => {
+        if (err) console.error(err);
+        if (user) {
+            return res.json({
+                success: true,
+                user: {
+                    id: user._id,
+                    username: user.username,
+                    email: user.email
+                }
+            })
+        }
+        res.json({
+            success: false,
+            msg: 'user not found or wrong data',
+            err: err.message
+        })
+
+    });
 })
 
+// get all 
+router.get('/', (req, res, next) => {
+
+    User.find((err, users) => {
+        if (err) console.error(err);
+        if (users) {
+            return res.json({
+                success: true,
+                users: users.map((user) => {
+                    return {
+                        id: user._id,
+                        username: user.username,
+                        email: user.email
+                    }
+                })
+            });
+        }
+        res.json({
+            success: false,
+            msg: "no users found"
+        })
+    })
+})
 
 module.exports = router;
