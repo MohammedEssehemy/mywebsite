@@ -1,0 +1,173 @@
+const express = require('express');
+const router = express.Router();
+const jwt = require('jsonwebtoken');
+const User = require('../models/user');
+const bcrypt = require('bcryptjs');
+const config = require('config');
+
+
+//login
+router.post('/authenticate', (req, res, next) => {
+    let username = req.body.username;
+    let password = req.body.password;
+
+    User.findOne({
+        username: username
+    }, (err, user) => {
+        if (err) throw err;
+        if (!user) {
+            return res.json({
+                success: false,
+                msg: 'user not found'
+            });
+        }
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+            if (err) throw err;
+            if (isMatch) {
+                const token = jwt.sign({
+                    userId: user._id,
+                }, config.secret, {
+                    expiresIn: 3 * 60 * 60
+                });
+                return res.json({
+                    success: true,
+                    token: token,
+                    user: {
+                        id: user._id,
+                        username: user.username
+                    }
+                });
+            }
+            return res.json({
+                success: false,
+                msg: 'wrong password'
+            });
+        })
+    })
+})
+
+
+//new users
+router.post('/register', (req, res, next) => {
+    //// password validation
+    let strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+    if (!strongPasswordRegex.test(req.body.password)) {
+        return res.json({
+            success: false,
+            message: "Weak password",
+            hint: "password at least 1 lowercase character, 1 uppercase character, 1 numeric character, 1 special character, must be eight characters or longer"
+        })
+    }
+    ///// email validation 
+    let emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    if (!emailRegex.test(req.body.email)) {
+        return res.json({
+            success: false,
+            message: "wrong email format"
+        })
+    }
+
+    // newuser object to send to mongoose
+    let newUser = new User({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+    });
+
+
+    ///// generate salt to hash password 
+    bcrypt.genSalt(7, (err, salt) => {
+        if (err) throw err;
+        //// hash password
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser.save((err, user) => {
+                if (err) {
+                    return res.json({
+                        success: false,
+                        msg: 'failed to add user'
+                    });
+                }
+                res.json({
+                    success: true,
+                    msg: 'user registerd',
+                    user: {
+                        id: user._id,
+                        username: user.username
+                    }
+                });
+            })
+        });
+
+    });
+
+
+})
+
+router.use((req, res, next) => {
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    if (token) {
+        jwt.verify(token, config.secret, (err, decoded) => {
+            if (err) {
+                return res.json({
+                    success: false,
+                    message: 'Failed to authenticate token.'
+                });
+            } else {
+                User.findById(decoded.userId, (err, user) => {
+                    if (user && user.admin) {
+                        req.decoded = decoded;
+                        next();
+                    } else {
+                        return res.status(403).send({
+                            success: false,
+                            message: 'Admins area.'
+                        });
+                    }
+                })
+            }
+        });
+    } else {
+        return res.status(403).send({
+            success: false,
+            message: 'No token provided.'
+        });
+    }
+});
+
+// admin area 
+
+//get specific users
+router.get('/:id', (req, res, next) => {
+    User.findById(req.params.id, (err, user) => {
+        if (err) console.error(err);
+        if (user) {
+            return res.json({
+                success: true,
+                user: {
+                    id: user._id,
+                    username: user.username
+                }
+            });
+        }
+        res.json({
+            success: false,
+            msg: "user not found"
+        })
+    });
+})
+
+
+//delete users
+router.delete('/:id', (req, res, next) => {
+    res.send('protected route: delete user here');
+})
+
+//edit users
+router.put('/:id', (req, res, next) => {
+    res.send('protected route: edit user here');
+})
+
+
+module.exports = router;
