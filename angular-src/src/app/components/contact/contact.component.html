@@ -12,7 +12,7 @@
     <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
-        <input type="email" class="form-control" (blur)="onblurEmail();" id="inputEmail" name="email" [(ngModel)]="msg.email" placeholder="Email">
+        <input type="email" class="form-control" (blur)="onblurEmail();onblurForm();" id="inputEmail" name="email" [(ngModel)]="msg.email" placeholder="Email">
       </div>
     </div>
     <!-- title -->
