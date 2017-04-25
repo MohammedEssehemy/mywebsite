@@ -53,7 +53,7 @@ app.use('*',(req,res,next)=>{
 });
 
 // port for the website
-const port = process.env.port || 9242;
+const port = process.env.PORT || 9242;
 // listen to the port and logging verifying msg
 app.listen(port,()=>{
     console.log("server is listening on port: ",port);
