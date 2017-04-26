@@ -17,6 +17,7 @@ import { ContactComponent } from './components/contact/contact.component'
 // services
 import { MessagesService } from "./services/messages.service";
 import { ValidateService } from "./services/validate.service";
+import { LoginComponent } from './components/login/login.component';
 
 
 const appRoutes:Routes = [
@@ -36,7 +37,8 @@ const appRoutes:Routes = [
     MessagesComponent,
     MessageComponent,
     AdminLoginComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

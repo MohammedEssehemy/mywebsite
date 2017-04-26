@@ -11,6 +11,10 @@ export class MessagesService {
     headers.append('content-type','application/json');
    return  this.http.post('api/msgs',msg,{headers:headers}).map( res => res.json());
   }
+
+  getMessages(token){
+
+  }
   constructor(private http: Http) { }
 
 }

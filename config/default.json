@@ -1,4 +1,4 @@
 {
-    "database":"mongodb://mywesiteappuser:mywesiteappuser1@ds119091.mlab.com:19091/mywebsite",
+    "database":"mongodb://mywebsiteuser:mywebsiteuser@ds119091.mlab.com:19091/mywebsite",
     "secret" : "MyWebSiteTokenSecsret"
 }
