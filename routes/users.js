@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const config = require('config');
-const authMiddleWare = require('../modules/authMiddleware');
+const adminAuth = require('../modules/adminauthMiddleware');
 
 //Admin login
 router.post('/authenticate', (req, res, next) => {
@@ -107,7 +107,7 @@ router.post('/register', (req, res, next) => {
 
 // admin area 
 /// Authentication middleware allow admins only
-router.use(authMiddleWare);
+router.use(adminAuth);
 
 
 //get specific users

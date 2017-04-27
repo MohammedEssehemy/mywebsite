@@ -1,7 +1,8 @@
 export class Message {
-    id : string;
+    _id : string;
     username: string;
     email: string;
+    time : Date;
     title: string;
     body: string
 }

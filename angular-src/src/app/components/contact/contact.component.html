@@ -1,4 +1,4 @@
-<form class="form-horizontal" >
+<form class="form-horizontal">
   <fieldset>
     <legend>Send new Message</legend>
     <!-- name -->
@@ -8,15 +8,16 @@
         <input type="text" class="form-control" (blur)="onblurForm();" id="inputName" name="name" [(ngModel)]="msg.username" placeholder="Name">
       </div>
     </div>
-    <!-- password -->    
+    <!-- password -->
     <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
-        <input type="email" class="form-control" (blur)="onblurEmail();onblurForm();" id="inputEmail" name="email" [(ngModel)]="msg.email" placeholder="Email">
+        <input type="email" class="form-control" (blur)="onblurEmail();onblurForm();" id="inputEmail" name="email" [(ngModel)]="msg.email"
+          placeholder="Email">
       </div>
     </div>
     <!-- title -->
- <div class="form-group">
+    <div class="form-group">
       <label for="inputTitle" class="col-lg-2 control-label">Title</label>
       <div class="col-lg-10">
         <input type="text" class="form-control" (blur)="onblurForm();" id="inputTitle" name="title" [(ngModel)]="msg.title" placeholder="Title">
@@ -27,15 +28,26 @@
       <label for="textArea" class="col-lg-2 control-label">Message Body</label>
       <div class="col-lg-10">
         <textarea class="form-control" rows="3" (blur)="onblurForm();" id="textArea" name="body" [(ngModel)]="msg.body"></textarea>
-        </div>
+      </div>
     </div>
     <!-- Buttons -->
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset"  class="btn btn-default">Reset</button>
-        <button type="submit" (click)="onSubmit($event);" [ngClass]= "formValid? '':'disabled' " class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="submit" (click)="onSubmit($event);" [ngClass]="formValid? '':'disabled' " class="btn btn-primary">Submit</button>
       </div>
     </div>
     <flash-messages></flash-messages>
+    <div class="col-md-4">
+      <p style="color:#fff;">
+        <strong><i class="fa fa-map-marker"></i> Address</strong><br> Dar Essalam, Cairo, Egypt
+      </p>
+      <p style="color:#fff;"><strong><i class="fa fa-phone"></i> Phone Number</strong><br> +201090659852
+      </p>
+      <p style="color:#fff;">
+        <strong><i class="fa fa-envelope"></i>  Email Address</strong><br> mohammedessehemy@gmail.com
+      </p>
+      <p></p>
+    </div>
   </fieldset>
 </form>

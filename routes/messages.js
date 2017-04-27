@@ -1,17 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Message = require('../models/message');
+const adminAuth = require('../modules/adminauthMiddleware');
 
 
-//get all messages
-router.get('/',(req,res,next)=>{
-    res.send('protected route: all messages here');
-})
 
 
 //new messages
 router.post('/',(req,res,next)=>{
-    ///// email validation 
+    ///// email validation
     let emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     if (!emailRegex.test(req.body.email)) {
         return res.json({
@@ -19,7 +16,7 @@ router.post('/',(req,res,next)=>{
             message: "wrong email format"
         })
     }
-    
+
     let newMessage = new Message({
         username: req.body.username,
         email : req.body.email,
@@ -47,20 +44,63 @@ router.post('/',(req,res,next)=>{
 
 })
 
+
+router.use(adminAuth);
+//get all messages
+router.get('/',(req,res,next)=>{
+  console.log('getID')
+
+    Message.find((err,messages)=>{
+        if (err) console.error(err)
+        if (messages) {
+            return res.json({
+                success: true,
+                messages: messages
+            });
+        }
+        res.json({
+            success: false,
+            msg: "no messages found"
+        })
+    })
+
+})
+
+//delete message
+router.delete('/:id', (req, res, next) => {
+    Message.findByIdAndRemove(req.params.id, (err, message) => {
+        if (err) console.error(err);
+        if (message) {
+            return res.json({
+                success: true,
+                message: message
+            })
+        }
+        res.json({
+            success: false,
+            msg: 'message not found',
+        })
+    });
+})
+
+
 //get specific messages
 router.get('/:id',(req,res,next)=>{
-    res.send('protected route: specific message');
+Message.findById(req.params.id, (err, message) => {
+        if (err) console.error(err);
+        if (message) {
+            return res.json({
+                success: true,
+                message: message
+            });
+        }
+        res.json({
+            success: false,
+            msg: "message not found"
+        })
+    });
 })
 
-//delete messages
-router.delete('/:id',(req,res,next)=>{
-    res.send('protected route: delete message here');
-})
-
-//edit messages
-router.delete('/:id',(req,res,next)=>{
-    res.send('protected route: edit message here');
-})
 
 
 module.exports = router;

@@ -1,3 +1,16 @@
-<p>
-  message works!
-</p>
+<div class="bs-calltoaction bs-calltoaction-primary">
+  <div class="row">
+    <div class="col-md-9 cta-contents">
+      <h3 class="cta-title">{{message.title}}</h3>
+      <div class="cta-desc">
+        <h4>By: {{message.username}}</h4>
+        <h5>{{message.email}}</h5>
+      <h6> {{message.time.toString()}} </h6>        
+        <p>{{message.body}}</p>
+      </div>
+    </div>
+    <div class="col-md-3 cta-button">
+      <button  (click)="deleteClicked($event);" class="btn btn-lg btn-block btn-danger">Delete</button>
+    </div>
+  </div>
+</div>
