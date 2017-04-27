@@ -670,7 +670,7 @@ var MessagesService = (function () {
     MessagesService.prototype.sendMessage = function (msg) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
         headers.append('content-type', 'application/json');
-        return this.http.post('http://localhost:9242/api/msgs', msg, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('api/msgs', msg, { headers: headers }).map(function (res) { return res.json(); });
     };
     MessagesService.prototype.getMessages = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
