@@ -19,16 +19,13 @@ export class MessagesService {
      let headers = new Headers();
     headers.append('x-access-token',this.token);
     
-   return  this.http.get('http://localhost:9242/api/msgs',{headers:headers}).map( res => res.json());
+   return  this.http.get('api/msgs',{headers:headers}).map( res => res.json());
   }
 
   deleteMessage(id){
      let headers = new Headers();
     headers.append('x-access-token',this.token);
-    console.log(id);
-    console.log(typeof(id));
-    console.log(`http://localhost:9242/api/msgs/${id}`)
-   return  this.http.delete(`http://localhost:9242/api/msgs/${id}`,{headers:headers}).map( res => res.json());
+   return  this.http.delete(`api/msgs/${id}`,{headers:headers}).map( res => res.json());
   }
   constructor(private http: Http) { }
 

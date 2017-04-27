@@ -675,15 +675,12 @@ var MessagesService = (function () {
     MessagesService.prototype.getMessages = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
         headers.append('x-access-token', this.token);
-        return this.http.get('http://localhost:9242/api/msgs', { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.get('api/msgs', { headers: headers }).map(function (res) { return res.json(); });
     };
     MessagesService.prototype.deleteMessage = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
         headers.append('x-access-token', this.token);
-        console.log(id);
-        console.log(typeof (id));
-        console.log("http://localhost:9242/api/msgs/" + id);
-        return this.http.delete("http://localhost:9242/api/msgs/" + id, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.delete("api/msgs/" + id, { headers: headers }).map(function (res) { return res.json(); });
     };
     return MessagesService;
 }());
