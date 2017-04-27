@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { Message } from "../../models/message";
+import { FlashMessagesService } from 'angular2-flash-messages';
 import { ValidateService } from "../../services/validate.service";
 import { MessagesService } from "../../services/messages.service";
 import { Router } from "@angular/router";
@@ -12,7 +12,6 @@ import { Router } from "@angular/router";
 })
 export class ContactComponent implements OnInit {
   msg: Message = new Message();
-  formValid: boolean;
   constructor(
     private flashMessagesService: FlashMessagesService,
      private validateService: ValidateService,
@@ -23,18 +22,9 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
   }
 
-  onblurEmail() {
-    if (! this.validateService.validateEmail(this.msg.email)) {
-        this.flashMessagesService.show('incorrect email format', { cssClass: 'alert-danger', timeout: 3000 });
-      }
-  }
-onblurForm(){
- this.formValid = this.validateService.validateMessageForm(this.msg) &&this.validateService.validateEmail(this.msg.email);
-}
   onSubmit(e) {
     e.preventDefault();
-    if (this.validateService.validateMessageForm(this.msg)) {
-      if (this.validateService.validateEmail(this.msg.email)) {
+    if (this.validateService.validateContactForm(this.msg)) {
           this.messagesService.sendMessage(this.msg).subscribe((response)=>{
               if (response.success){ 
                 this.flashMessagesService.show('sent Successfuly,redirected in 3 seconds', { cssClass: 'alert-success', timeout: 3000 });
@@ -43,10 +33,6 @@ onblurForm(){
                   this.flashMessagesService.show(response.msg, { cssClass: 'alert-danger', timeout: 3000 });
               }
           });
-      }
-      else {
-        this.flashMessagesService.show('incorrect email format', { cssClass: 'alert-danger', timeout: 3000 });
-      }
     }
     else {
       this.flashMessagesService.show('All fields are required', { cssClass: 'alert-danger', timeout: 3000 });

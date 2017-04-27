@@ -1,0 +1,43 @@
+<form class="form-horizontal">
+  <fieldset>
+    <legend>Register</legend>
+    <!-- name -->
+    <div class="form-group">
+      <label for="inputName" class="col-lg-2 control-label">username</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control"  id="inputName" name="name" [(ngModel)]="user.username" placeholder="Name">
+      </div>
+    </div>
+     <!-- email -->
+    <div class="form-group" [ngClass]="validateService.validateEmail(user.email)?'':'has-error'">
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-10">
+        <input type="email" class="form-control" id="inputEmail" name="email" [(ngModel)]="user.email"
+          placeholder="Email">
+      </div>
+    </div>
+    <!-- password -->
+    <div class="form-group" [ngClass]="validateService.validatePassword(user.password)?'':'has-error'">
+      <label for="inputPassword" class="col-lg-2 control-label">password</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control"  id="inputPassword" name="password" [(ngModel)]="user.password"
+          placeholder="Password">
+      </div>
+    </div>
+    <!-- retype password -->
+    <div class="form-group" [ngClass]="retype!==user.password?'has-error':''">
+      <label for="inputPassword" class="col-lg-2 control-label">confirm password</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="retypePassword" name="password" [(ngModel)]="retype" 
+          placeholder="Password">
+      </div>
+    </div>
+    <!-- Buttons -->
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="submit" (click)="onSubmit($event);" [disabled]=" !validateService.validateRegisterForm(user) || user.password !== retype" class="btn btn-primary">Register</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

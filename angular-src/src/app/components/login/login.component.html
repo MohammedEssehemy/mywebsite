@@ -1,3 +1,27 @@
-<p>
-  login works!
-</p>
+<form class="form-horizontal">
+  <fieldset>
+    <legend>Login</legend>
+    <!-- name -->
+    <div class="form-group">
+      <label for="inputName" class="col-lg-2 control-label">username</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control"  id="inputName" name="name" [(ngModel)]="user.username" placeholder="Name">
+      </div>
+    </div>
+    <!-- password -->
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">password</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="inputPassword" name="password" [(ngModel)]="user.password"
+          placeholder="Password">
+      </div>
+    </div>
+    <!-- Buttons -->
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="submit" (click)="onSubmit($event);" [disabled]=" !validateService.validateLoginForm(user)" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

@@ -1,2 +1,6 @@
+<div id="beforLoading" class="col-xs-offset-5" *ngIf="!messagesList">
+<i class="fa fa-refresh fa-spin fa-5x"></i>
+<span class="sr-only">Loading...</span>
+</div>
 <app-message *ngFor="let message of messagesList" [message]="message" > Loading ...</app-message>
 <flash-messages></flash-messages>

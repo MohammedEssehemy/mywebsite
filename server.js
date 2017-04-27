@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
-// process.env.NODE_ENV = "test"; // setting environment before require config  
+// process.env.NODE_ENV = "test"; // setting environment before require config
 const config = require('config');
 
 //reauire routes

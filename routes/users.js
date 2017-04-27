@@ -8,6 +8,7 @@ const adminAuth = require('../modules/adminauthMiddleware');
 
 //Admin login
 router.post('/authenticate', (req, res, next) => {
+    console.log('from authenticate',req.body)
     let username = req.body.username;
     let password = req.body.password;
 
@@ -33,8 +34,9 @@ router.post('/authenticate', (req, res, next) => {
                     success: true,
                     token: token,
                     user: {
-                        id: user._id,
-                        username: user.username
+                        _id: user._id,
+                        username: user.username,
+                        email : user.email
                     }
                 });
             }
@@ -58,7 +60,7 @@ router.post('/register', (req, res, next) => {
             hint: "password at least 1 lowercase character, 1 uppercase character, 1 numeric character, 1 special character, must be eight characters or longer"
         })
     }
-    ///// email validation 
+    ///// email validation
     let emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     if (!emailRegex.test(req.body.email)) {
         return res.json({
@@ -75,7 +77,7 @@ router.post('/register', (req, res, next) => {
     });
 
 
-    ///// generate salt to hash password 
+    ///// generate salt to hash password
     bcrypt.genSalt(7, (err, salt) => {
         if (err) throw err;
         //// hash password
@@ -89,9 +91,15 @@ router.post('/register', (req, res, next) => {
                         msg: 'failed to add user'
                     });
                 }
+                const token = jwt.sign({
+                    userId: user._id,
+                }, config.secret, {
+                    expiresIn: 3 * 60 * 60
+                });
                 res.json({
                     success: true,
                     msg: 'user registerd',
+                    token : token,
                     user: {
                         id: user._id,
                         username: user.username
@@ -105,7 +113,7 @@ router.post('/register', (req, res, next) => {
 
 })
 
-// admin area 
+// admin area
 /// Authentication middleware allow admins only
 router.use(adminAuth);
 
@@ -182,7 +190,7 @@ router.put('/:id', (req, res, next) => {
     });
 })
 
-// get all 
+// get all
 router.get('/', (req, res, next) => {
 
     User.find((err, users) => {

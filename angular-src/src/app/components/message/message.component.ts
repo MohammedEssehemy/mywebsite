@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from "@angular/core";
 import { MessagesService } from "../../services/messages.service";
 import { FlashMessagesService } from "angular2-flash-messages";
+import { Message } from "../../models/message";
 
 @Component({
   selector: 'app-message',
@@ -9,7 +10,7 @@ import { FlashMessagesService } from "angular2-flash-messages";
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  @Input() message;
+  @Input() message:Message;
 
   
   constructor(
@@ -18,6 +19,7 @@ export class MessageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.message.time = new Date(this.message.time);
   }
   deleteClicked(e){
     e.preventDefault();

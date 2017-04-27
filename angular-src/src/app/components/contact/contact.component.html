@@ -5,14 +5,14 @@
     <div class="form-group">
       <label for="inputName" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" (blur)="onblurForm();" id="inputName" name="name" [(ngModel)]="msg.username" placeholder="Name">
+        <input type="text" class="form-control"  id="inputName" name="name" [(ngModel)]="msg.username" placeholder="Name">
       </div>
     </div>
-    <!-- password -->
+    <!-- email -->
     <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <label for="inputEmail" class="col-lg-2 control-label" [ngClass]="validateService.validateEmail(msg.email)?'':'has-error'">Email</label>
       <div class="col-lg-10">
-        <input type="email" class="form-control" (blur)="onblurEmail();onblurForm();" id="inputEmail" name="email" [(ngModel)]="msg.email"
+        <input type="email" class="form-control"  id="inputEmail" name="email" [(ngModel)]="msg.email"
           placeholder="Email">
       </div>
     </div>
@@ -20,34 +20,40 @@
     <div class="form-group">
       <label for="inputTitle" class="col-lg-2 control-label">Title</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" (blur)="onblurForm();" id="inputTitle" name="title" [(ngModel)]="msg.title" placeholder="Title">
+        <input type="text" class="form-control"  id="inputTitle" name="title" [(ngModel)]="msg.title" placeholder="Title">
       </div>
     </div>
     <!--Message body-->
     <div class="form-group">
       <label for="textArea" class="col-lg-2 control-label">Message Body</label>
       <div class="col-lg-10">
-        <textarea class="form-control" rows="3" (blur)="onblurForm();" id="textArea" name="body" [(ngModel)]="msg.body"></textarea>
+        <textarea class="form-control" rows="3"  id="textArea" name="body" [(ngModel)]="msg.body"></textarea>
       </div>
     </div>
     <!-- Buttons -->
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default">Reset</button>
-        <button type="submit" (click)="onSubmit($event);" [ngClass]="formValid? '':'disabled' " class="btn btn-primary">Submit</button>
+        <button type="submit" [disabled]=" !validateService.validateContactForm(msg)" (click)="onSubmit($event);"  class="btn btn-primary">Submit</button>
       </div>
-    </div>
-    <flash-messages></flash-messages>
-    <div class="col-md-4">
-      <p style="color:#fff;">
-        <strong><i class="fa fa-map-marker"></i> Address</strong><br> Dar Essalam, Cairo, Egypt
-      </p>
-      <p style="color:#fff;"><strong><i class="fa fa-phone"></i> Phone Number</strong><br> +201090659852
-      </p>
-      <p style="color:#fff;">
-        <strong><i class="fa fa-envelope"></i>  Email Address</strong><br> mohammedessehemy@gmail.com
-      </p>
-      <p></p>
     </div>
   </fieldset>
 </form>
+    <div class="col-md-4">
+      <h3>Mohammed Essehemy</h3>
+      <h4>feel free to contact me.</h4>
+      <p style="color:#fff;">
+        <strong><span class="glyphicon glyphicon-envelope"></span> &nbsp; &nbsp; <a href="mailto:mohammedessehemy@gmail.com">   Gmail </a> </strong><br /> 
+      </p>
+         <p style="color:#fff;">
+        <strong><i class="fa fa-linkedin" aria-hidden="true"></i> &nbsp; &nbsp; <a href="http://linkedin.com/in/mohammed-essehemy-5609a4a3/">  Linkedin </a> </strong><br />
+      </p>
+       <p style="color:#fff;">
+        <strong><i class="fa fa-github" aria-hidden="true"></i>
+ &nbsp; &nbsp;         <a href="http://github.com/MohammedEssehemy/">  Github </a></strong><br /> 
+      </p>
+      <p style="color:#fff;">
+        <strong><span class="glyphicon glyphicon-map-marker"></span> &nbsp; &nbsp; Dar Essalam, Cairo, Egypt.</strong><br> 
+      </p>
+      <p></p>
+    </div>

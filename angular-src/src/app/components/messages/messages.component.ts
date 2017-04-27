@@ -15,10 +15,9 @@ export class MessagesComponent implements OnInit {
     this.messagesService.getMessages().subscribe((response)=>{
       if(response.success){
         this.messagesList = response.messages;
-        console.log(this.messagesList);
       }
       else {
-
+          console.log(response);
       }
     },(err)=>console.log(err));
   }

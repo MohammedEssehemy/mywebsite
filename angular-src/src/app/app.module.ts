@@ -11,20 +11,21 @@ import {HomeComponent} from './components/home/home.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MessageComponent } from './components/message/message.component';
-import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { ContactComponent } from './components/contact/contact.component'
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 // services
 import { MessagesService } from "./services/messages.service";
+import { UsersService } from "./services/users.service";
 import { ValidateService } from "./services/validate.service";
-import { LoginComponent } from './components/login/login.component';
 
 
 const appRoutes:Routes = [
-{path:'',component: HomeComponent},
-{path:'projects',component:ProjectsComponent},
+  {path:'',component: HomeComponent},
+{path:'register',component:RegisterComponent},
 {path:'messages',component:MessagesComponent},
-{path:'adminlogin',component:AdminLoginComponent},
+{path:'login',component:LoginComponent},
 {path:'contact',component:ContactComponent},
 {path:'*',component: HomeComponent}
 ]
@@ -36,9 +37,9 @@ const appRoutes:Routes = [
     ProjectsComponent,
     MessagesComponent,
     MessageComponent,
-    AdminLoginComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,7 @@ const appRoutes:Routes = [
     FlashMessagesModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ValidateService, MessagesService],
+  providers: [ValidateService, MessagesService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

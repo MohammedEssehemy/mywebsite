@@ -7,18 +7,21 @@ import { Router } from "@angular/router";
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
+  retype;
   user : User;
+
   constructor(
      private flashMessagesService: FlashMessagesService,
      private validateService: ValidateService,
      private usersService: UsersService,
      private router: Router
   ) { }
+
 
 
   ngOnInit() {
@@ -28,12 +31,12 @@ export class LoginComponent implements OnInit {
 
  onSubmit(e) {
     e.preventDefault();
-    if (this.validateService.validateLoginForm(this.user)) {
-          this.usersService.authenticate(this.user).subscribe((response)=>{
+    if (this.validateService.validateRegisterForm(this.user)) {
+          this.usersService.register(this.user).subscribe((response)=>{
               if (response.success){ 
                 this.usersService.storeToken(response.token);
                 this.usersService.storeUser(response.user);
-                this.flashMessagesService.show('login Successfuly,redirected in 3 seconds', { cssClass: 'alert-success', timeout: 3000 });
+                this.flashMessagesService.show('registered Successfuly,redirected in 3 seconds', { cssClass: 'alert-success', timeout: 3000 });
                setTimeout(()=>{ this.router.navigate(['/'])},3000);
               } else {
                   this.flashMessagesService.show(response.msg, { cssClass: 'alert-danger', timeout: 3000 });

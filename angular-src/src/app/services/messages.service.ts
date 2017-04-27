@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from "@angular/http";
 import 'rxjs/add/operator/map'
 import { Message } from "../models/message";
+import { UsersService } from "./users.service";
 
 @Injectable()
 export class MessagesService {
 
-  token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OGZmMTljNTk3YzhhNTM0ZTk1ZTUzYTgiLCJpYXQiOjE0OTMyNDgwMjEsImV4cCI6MTQ5MzI1ODgyMX0.nwG0j9M9VX7CFo86Mtt6cQm2J0mcjKPidbAMBSvZAg4';
+  token ;
 
 
   sendMessage(msg: Message){
@@ -16,9 +17,9 @@ export class MessagesService {
   }
 
   getMessages(){
+      this.token = this.usersService.getToken();
      let headers = new Headers();
     headers.append('x-access-token',this.token);
-    
    return  this.http.get('api/msgs',{headers:headers}).map( res => res.json());
   }
 
@@ -27,6 +28,10 @@ export class MessagesService {
     headers.append('x-access-token',this.token);
    return  this.http.delete(`api/msgs/${id}`,{headers:headers}).map( res => res.json());
   }
-  constructor(private http: Http) { }
+  constructor(
+    private http: Http,
+    private usersService : UsersService
+    ) { 
+    }
 
 }

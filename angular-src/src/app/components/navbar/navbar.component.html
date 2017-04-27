@@ -1,26 +1,24 @@
 <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a [routerLink]="['/']" class="navbar-brand">Mohammed Essehemy</a>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav ">
-            <li  [routerLinkActive]="['active']"  [routerLinkActiveOptions] = "{exact : true}">
-              <a  [routerLink]="['/']">Home</a>
-            </li>
-            <li [routerLinkActive]="['active']">
-              <a  [routerLink]="['/projects']">Projects</a>
-            </li>
-            <li [routerLinkActive]="['active']">
-              <a  [routerLink]="['/messages']">Messages</a>               
-            </li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li [routerLinkActive]="['active']"><a  [routerLink]="['/adminlogin']">Admin</a></li>
-            <li [routerLinkActive]="['active']"><a  [routerLink]="['/contact']">Contact Me</a></li>
-          </ul>
-
-        </div>
-      </div>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a [routerLink]="['/']" class="navbar-brand">Awesome GIS</a>
     </div>
+    <ul class="nav navbar-nav ">
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact : true}">
+        <a [routerLink]="['/']">Home</a>
+      </li>
+      <li [routerLinkActive]="['active']">
+        <a [routerLink]="['/register']"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+      </li>
+      <li [routerLinkActive]="['active']">
+        <a [routerLink]="['/messages']">Messages</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" (click)="logoutFun();"> <span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+      <li [routerLinkActive]="['active']"><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li [routerLinkActive]="['active']"><a [routerLink]="['/contact']">Contact Me</a></li>
+    </ul>
+  </div>
+</div>
