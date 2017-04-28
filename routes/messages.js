@@ -48,8 +48,6 @@ router.post('/',(req,res,next)=>{
 router.use(adminAuth);
 //get all messages
 router.get('/',(req,res,next)=>{
-  console.log('getID')
-
     Message.find((err,messages)=>{
         if (err) console.error(err)
         if (messages) {

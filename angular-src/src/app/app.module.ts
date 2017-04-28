@@ -19,12 +19,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { MessagesService } from "./services/messages.service";
 import { UsersService } from "./services/users.service";
 import { ValidateService } from "./services/validate.service";
+import { UsersGuard } from "./guards/users.guard";
+import { FooterComponent } from './components/footer/footer.component';
 
 
 const appRoutes:Routes = [
   {path:'',component: HomeComponent},
 {path:'register',component:RegisterComponent},
-{path:'messages',component:MessagesComponent},
+{path:'messages',component:MessagesComponent,canActivate:[UsersGuard]},
 {path:'login',component:LoginComponent},
 {path:'contact',component:ContactComponent},
 {path:'*',component: HomeComponent}
@@ -39,7 +41,8 @@ const appRoutes:Routes = [
     MessageComponent,
     ContactComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ const appRoutes:Routes = [
     FlashMessagesModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ValidateService, MessagesService, UsersService],
+  providers: [ValidateService, MessagesService, UsersService, UsersGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

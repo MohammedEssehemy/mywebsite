@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from "@angular/http";
 import 'rxjs/add/operator/map'
 import { User } from "../models/user";
-
+import { tokenNotExpired} from "angular2-jwt";
 
 @Injectable()
 export class UsersService {
@@ -11,8 +11,17 @@ export class UsersService {
 
   constructor(
     private http: Http
+    // private jwtHelper: JwtHelper
   ) { }
 
+
+  loggedIn(){
+      return tokenNotExpired('token');
+  }
+
+  isAdmin(){
+
+  }
   authenticate(user: User) {
     let headers = new Headers();
     headers.append('content-type', 'application/json');
@@ -26,7 +35,7 @@ export class UsersService {
   }
 
   storeToken(token) {
-    localStorage.setItem('authToken', token);
+    localStorage.setItem('token', token);
     this.token = token;
   }
 
@@ -36,7 +45,7 @@ export class UsersService {
   }
 
   getToken() {
-    return localStorage.getItem('authToken');
+    return localStorage.getItem('token');
   }
 
   getUser() {
