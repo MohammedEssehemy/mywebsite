@@ -7,7 +7,7 @@
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact : true}">
         <a [routerLink]="['/']">Home</a>
       </li>
-      <li [routerLinkActive]="['active']">
+      <li *ngIf="usersService.loggedIn();" [routerLinkActive]="['active']">
         <a [routerLink]="['/messages']">Messages</a>
       </li>
     </ul>

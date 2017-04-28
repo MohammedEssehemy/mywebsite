@@ -950,7 +950,7 @@ module.exports = module.exports.toString();
 /***/ 184:
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>  \n<div class='container'>\n<router-outlet></router-outlet>\n<flash-messages></flash-messages>\n<app-footer></app-footer>\n</div>\n"
+module.exports = "<app-navbar></app-navbar>  \n<div class='container'>\n<router-outlet></router-outlet>\n<flash-messages></flash-messages>\n</div>\n<app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -999,7 +999,7 @@ module.exports = "<div id=\"beforLoading\" class=\"col-xs-offset-5\" *ngIf=\"!me
 /***/ 191:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a [routerLink]=\"['/']\" class=\"navbar-brand\">Awesome GIS</a>\n    </div>\n    <ul class=\"nav navbar-nav \">\n      <li [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact : true}\">\n        <a [routerLink]=\"['/']\">Home</a>\n      </li>\n      <li [routerLinkActive]=\"['active']\">\n        <a [routerLink]=\"['/messages']\">Messages</a>\n      </li>\n    </ul>\n\n    <ul class=\"nav navbar-nav navbar-right\">\n       <li [routerLinkActive]=\"['active']\" *ngIf=\"!usersService.loggedIn();\">\n        <a [routerLink]=\"['/register']\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a>\n      </li>\n      <li *ngIf=\"!usersService.loggedIn();\" [routerLinkActive]=\"['active']\"><a [routerLink]=\"['/login']\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\n      <li *ngIf=\"usersService.loggedIn();\"><a href=\"#\" (click)=\"logoutFun();\"> <span class=\"glyphicon glyphicon-log-out\"></span>Logout</a></li>\n    </ul>\n  </div>\n</div>\n"
+module.exports = "<div class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a [routerLink]=\"['/']\" class=\"navbar-brand\">Awesome GIS</a>\n    </div>\n    <ul class=\"nav navbar-nav \">\n      <li [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact : true}\">\n        <a [routerLink]=\"['/']\">Home</a>\n      </li>\n      <li *ngIf=\"usersService.loggedIn();\" [routerLinkActive]=\"['active']\">\n        <a [routerLink]=\"['/messages']\">Messages</a>\n      </li>\n    </ul>\n\n    <ul class=\"nav navbar-nav navbar-right\">\n       <li [routerLinkActive]=\"['active']\" *ngIf=\"!usersService.loggedIn();\">\n        <a [routerLink]=\"['/register']\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a>\n      </li>\n      <li *ngIf=\"!usersService.loggedIn();\" [routerLinkActive]=\"['active']\"><a [routerLink]=\"['/login']\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\n      <li *ngIf=\"usersService.loggedIn();\"><a href=\"#\" (click)=\"logoutFun();\"> <span class=\"glyphicon glyphicon-log-out\"></span>Logout</a></li>\n    </ul>\n  </div>\n</div>\n"
 
 /***/ }),
 
