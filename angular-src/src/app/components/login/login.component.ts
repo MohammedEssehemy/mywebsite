@@ -13,9 +13,10 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   user : User;
+  loading: boolean = false;
   constructor(
      private flashMessagesService: FlashMessagesService,
-     private validateService: ValidateService,
+     public validateService: ValidateService,
      private usersService: UsersService,
      private router: Router
   ) { }
@@ -27,12 +28,14 @@ export class LoginComponent implements OnInit {
 
 
  onSubmit(e) {
+   this.loading = true;
     e.preventDefault();
     if (this.validateService.validateLoginForm(this.user)) {
           this.usersService.authenticate(this.user).subscribe((response)=>{
               if (response.success){ 
                 this.usersService.storeToken(response.token);
                 this.usersService.storeUser(response.user);
+                this.loading = false;
                 this.flashMessagesService.show('login Successfuly,redirected in 3 seconds', { cssClass: 'alert-success', timeout: 3000 });
                setTimeout(()=>{ this.router.navigate(['/'])},3000);
               } else {

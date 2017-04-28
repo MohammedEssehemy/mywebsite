@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes} from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+
+
 // components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -21,6 +23,7 @@ import { UsersService } from "./services/users.service";
 import { ValidateService } from "./services/validate.service";
 import { UsersGuard } from "./guards/users.guard";
 import { FooterComponent } from './components/footer/footer.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 const appRoutes:Routes = [
@@ -42,7 +45,8 @@ const appRoutes:Routes = [
     ContactComponent,
     LoginComponent,
     RegisterComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

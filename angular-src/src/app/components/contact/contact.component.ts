@@ -14,7 +14,7 @@ export class ContactComponent implements OnInit {
   msg: Message = new Message();
   constructor(
     private flashMessagesService: FlashMessagesService,
-     private validateService: ValidateService,
+     public validateService: ValidateService,
      private messagesService: MessagesService,
      private router: Router
      ) { }

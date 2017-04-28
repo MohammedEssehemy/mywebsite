@@ -8,12 +8,16 @@ import { Message } from "../../models/message";
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
+  messagesList:Array<Message> ;
+  loading: boolean = true;
 
   constructor(private messagesService:MessagesService) { }
-  messagesList:Array<Message> ;
+
+
   ngOnInit() {
     this.messagesService.getMessages().subscribe((response)=>{
       if(response.success){
+        this.loading = false;
         this.messagesList = response.messages;
       }
       else {
@@ -21,5 +25,10 @@ export class MessagesComponent implements OnInit {
       }
     },(err)=>console.log(err));
   }
+  messageDeleted(id){
+       let messageIndex = this.messagesList.findIndex(m=>m._id == id); 
+       this.messagesList.splice(messageIndex,1);   
+  }
+
 
 }

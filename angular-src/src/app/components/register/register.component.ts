@@ -14,10 +14,11 @@ import { Router } from "@angular/router";
 export class RegisterComponent implements OnInit {
   retype;
   user : User;
+  loading: boolean = false;
 
   constructor(
      private flashMessagesService: FlashMessagesService,
-     private validateService: ValidateService,
+     public validateService: ValidateService,
      private usersService: UsersService,
      private router: Router
   ) { }
@@ -30,12 +31,14 @@ export class RegisterComponent implements OnInit {
 
 
  onSubmit(e) {
+      this.loading = true;
     e.preventDefault();
     if (this.validateService.validateRegisterForm(this.user)) {
           this.usersService.register(this.user).subscribe((response)=>{
               if (response.success){ 
                 this.usersService.storeToken(response.token);
                 this.usersService.storeUser(response.user);
+                   this.loading = false;
                 this.flashMessagesService.show('registered Successfuly,redirected in 3 seconds', { cssClass: 'alert-success', timeout: 3000 });
                setTimeout(()=>{ this.router.navigate(['/'])},3000);
               } else {
