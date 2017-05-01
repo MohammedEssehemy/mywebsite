@@ -27,7 +27,7 @@ import { MapComponent } from './components/map/map.component';
 
 
 const appRoutes:Routes = [
-  {path:'',component: MapComponent},
+  {path:'',component: HomeComponent},
 {path:'register',component:RegisterComponent},
 {path:'messages',component:MessagesComponent,canActivate:[UsersGuard]},
 {path:'login',component:LoginComponent},

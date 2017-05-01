@@ -13,20 +13,20 @@ export class MessagesService {
   sendMessage(msg: Message){
     let headers = new Headers();
     headers.append('content-type','application/json');
-   return  this.http.post('http://localhost:9242/api/msgs',msg,{headers:headers}).map( res => res.json());
+   return  this.http.post('api/msgs',msg,{headers:headers}).map( res => res.json());
   }
 
   getMessages(){
       this.token = this.usersService.getToken();
      let headers = new Headers();
     headers.append('x-access-token',this.token);
-   return  this.http.get('http://localhost:9242/api/msgs',{headers:headers}).map( res => res.json());
+   return  this.http.get('api/msgs',{headers:headers}).map( res => res.json());
   }
 
   deleteMessage(id){
      let headers = new Headers();
     headers.append('x-access-token',this.token);
-   return  this.http.delete(`http://localhost:9242/api/msgs/${id}`,{headers:headers}).map( res => res.json());
+   return  this.http.delete(`api/msgs/${id}`,{headers:headers}).map( res => res.json());
   }
   constructor(
     private http: Http,

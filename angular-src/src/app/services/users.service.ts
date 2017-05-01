@@ -25,13 +25,13 @@ export class UsersService {
   authenticate(user: User) {
     let headers = new Headers();
     headers.append('content-type', 'application/json');
-    return this.http.post('http://localhost:9242/api/users/authenticate', user, { headers: headers }).map(res => res.json());
+    return this.http.post('api/users/authenticate', user, { headers: headers }).map(res => res.json());
   }
 
    register(user: User) {
     let headers = new Headers();
     headers.append('content-type', 'application/json');
-    return this.http.post('http://localhost:9242/api/users/register', user, { headers: headers }).map(res => res.json());
+    return this.http.post('api/users/register', user, { headers: headers }).map(res => res.json());
   }
 
   storeToken(token) {
