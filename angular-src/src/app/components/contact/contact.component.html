@@ -1,5 +1,5 @@
 <app-loading *ngIf="busy" [message]="'sending Data'" ></app-loading>
-    <form [formGroup]="userForm"  *ngIf="!busy"  (ngSubmit)="onSubmit($event)">
+    <form [formGroup]="messageForm"  *ngIf="!busy"  (ngSubmit)="onSubmit($event)">
     <legend>Contact Me</legend>
 <fieldset>
       <!-- username -->
