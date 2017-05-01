@@ -70,7 +70,9 @@ buildForm(): void {
 
   formErrors = {
     'username': '',
-    'password': '',
+    'email': '',
+    'title':'',
+    'body':''
   };
 
   validationMessages = {

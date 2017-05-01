@@ -5497,7 +5497,9 @@ var ContactComponent = (function () {
         this.busy = false;
         this.formErrors = {
             'username': '',
-            'password': '',
+            'email': '',
+            'title': '',
+            'body': ''
         };
         this.validationMessages = {
             'username': {
