@@ -1,44 +1,57 @@
-<app-loading *ngIf="loading" [message]="'sending Data'" ></app-loading>
-<form class="form-horizontal">
-  <fieldset>
-    <legend>Register</legend>
-    <!-- name -->
-    <div class="form-group">
-      <label for="inputName" class="col-lg-2 control-label">username</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control"  id="inputName" name="name" [(ngModel)]="user.username" placeholder="Name">
+<app-loading *ngIf="busy" [message]="'sending Data'" ></app-loading>
+    <form [formGroup]="userForm"  *ngIf="!busy"  (ngSubmit)="onSubmit($event)">
+        <fieldset>
+    <legend>New User</legend>
+          
+      <!-- username -->
+      <div class="form-group">
+        <label for="username">username</label>
+
+        <input type="text" id="username" class="form-control"
+               formControlName="username" required >
+
+        <div *ngIf="formErrors.username" class="alert alert-danger">
+          {{ formErrors.username }}
+        </div>
       </div>
-    </div>
-     <!-- email -->
-    <div class="form-group" [ngClass]="validateService.validateEmail(user.email)?'':'has-error'">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-      <div class="col-lg-10">
-        <input type="email" class="form-control" id="inputEmail" name="email" [(ngModel)]="user.email"
-          placeholder="Email">
+
+<!-- password-->
+
+        <div class="form-group">
+        <label for="password">password</label>
+
+        <input type="password" id="password" class="form-control"
+               formControlName="password" required >
+
+        <div *ngIf="formErrors.password" class="alert alert-danger">
+          {{ formErrors.password }}
+        </div>
       </div>
-    </div>
-    <!-- password -->
-    <div class="form-group" [ngClass]="validateService.validatePassword(user.password)?'':'has-error'">
-      <label for="inputPassword" class="col-lg-2 control-label">password</label>
-      <div class="col-lg-10">
-        <input type="password" class="form-control"  id="inputPassword" name="password" [(ngModel)]="user.password"
-          placeholder="Password">
+      <!-- confirm password -->
+        <div  class="form-group">
+        <label for="confirm">confirm</label>
+
+        <input type="password" id="confirm" class="form-control"
+               formControlName="confirm" required >
+
+        <div *ngIf="formErrors.confirm" class="alert alert-danger">
+          {{ formErrors.confirm }}
+        </div>
+        </div>
+
+        <!-- email -->
+        <div class="form-group">
+        <label for="email">email</label>
+
+        <input type="email" id="email" class="form-control"
+               formControlName="email" required >
+
+        <div *ngIf="formErrors.email" class="alert alert-danger">
+          {{ formErrors.email }}
+        </div>
       </div>
-    </div>
-    <!-- retype password -->
-    <div class="form-group" [ngClass]="retype!==user.password?'has-error':''">
-      <label for="inputPassword" class="col-lg-2 control-label">confirm password</label>
-      <div class="col-lg-10">
-        <input type="password" class="form-control" id="retypePassword" name="password" [(ngModel)]="retype" 
-          placeholder="Password">
-      </div>
-    </div>
-    <!-- Buttons -->
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default">Reset</button>
-        <button type="submit" (click)="onSubmit($event);" [disabled]=" !validateService.validateRegisterForm(user) || user.password !== retype" class="btn btn-primary">Register</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
+              <button type="reset" class="btn btn-default">Reset</button>
+      <button type="submit" class="btn btn-default"
+             [disabled]="!userForm.valid">Submit</button>
+        </fieldset>
+    </form>

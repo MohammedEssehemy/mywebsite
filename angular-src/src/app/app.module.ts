@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes} from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
@@ -20,14 +20,14 @@ import { RegisterComponent } from './components/register/register.component';
 // services
 import { MessagesService } from "./services/messages.service";
 import { UsersService } from "./services/users.service";
-import { ValidateService } from "./services/validate.service";
 import { UsersGuard } from "./guards/users.guard";
 import { FooterComponent } from './components/footer/footer.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { MapComponent } from './components/map/map.component';
 
 
 const appRoutes:Routes = [
-  {path:'',component: HomeComponent},
+  {path:'',component: MapComponent},
 {path:'register',component:RegisterComponent},
 {path:'messages',component:MessagesComponent,canActivate:[UsersGuard]},
 {path:'login',component:LoginComponent},
@@ -46,16 +46,18 @@ const appRoutes:Routes = [
     LoginComponent,
     RegisterComponent,
     FooterComponent,
-    LoadingComponent
+    LoadingComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     FlashMessagesModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ValidateService, MessagesService, UsersService, UsersGuard],
+  providers: [MessagesService, UsersService, UsersGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
