@@ -100,8 +100,8 @@ buildForm(): void {
     e.preventDefault();
     this.messagesService.sendMessage(this.msg).subscribe((response)=>{
               if (response.success){ 
-                this.flashMessagesService.show('sent Successfuly,redirected in 3 seconds', { cssClass: 'alert-success', timeout: 3000 });
-               setTimeout(()=>{ this.router.navigate(['/'])},3000);
+                this.flashMessagesService.show('redirecting to home', { cssClass: 'alert-success', timeout: 3000 });
+               this.router.navigate(['/']);
               } else {
                   this.busy = false;
                   this.flashMessagesService.show(response.msg, { cssClass: 'alert-danger', timeout: 3000 });

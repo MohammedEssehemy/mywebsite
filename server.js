@@ -14,10 +14,10 @@ const users = require('./routes/users');
 
 
 // connect to mongo
-mongoose.connect(config.database);
+mongoose.connect(config.DBMongo);
 // mongo connected successfully
 mongoose.connection.on('connected',()=>{
-    console.log('connected to mongo on: '+config.database);
+    console.log('connected to mongo on: '+config.DBMongo);
 });
 // Mongo connection error
 mongoose.connection.on('error',(err)=>{
