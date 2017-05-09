@@ -32,6 +32,7 @@ const appRoutes:Routes = [
 {path:'messages',component:MessagesComponent,canActivate:[UsersGuard]},
 {path:'login',component:LoginComponent},
 {path:'contact',component:ContactComponent},
+{path:'map',component:MapComponent},
 {path:'*',component: HomeComponent}
 ]
 @NgModule({

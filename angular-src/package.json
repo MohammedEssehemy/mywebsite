@@ -26,6 +26,9 @@
     "bootswatch": "^3.3.7",
     "core-js": "^2.4.1",
     "leaflet": "^1.0.3",
+    "leaflet-fullscreen": "^1.0.2",
+    "leaflet.locatecontrol": "^0.60.0",
+    "leaflet.wms": "^0.2.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.5"
   },
@@ -35,6 +38,7 @@
     "@types/geojson": "^1.0.2",
     "@types/jasmine": "2.5.38",
     "@types/leaflet": "^1.0.60",
+    "@types/leaflet-fullscreen": "^1.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",
     "jasmine-core": "~2.5.2",
