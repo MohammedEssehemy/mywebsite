@@ -2479,14 +2479,14 @@ function View_HomeComponent_0(l) {
         ], null, null, null, null, null)),
         (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵted"](null, ['\n  '])),
         (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵeld"](0, null, null, 1, 'h1', [], null, null, null, null, null)),
-        (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵted"](null, ['Awesome GIS Blog'])),
+        (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵted"](null, ['Awesome GIS'])),
         (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵted"](null, ['\n  '])),
-        (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵeld"](0, null, null, 1, 'h4', [[
+        (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵeld"](0, null, null, 1, 'p', [[
                 'class',
                 'lead'
             ]
         ], null, null, null, null, null)),
-        (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵted"](null, [' GIS Project'])),
+        (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵted"](null, [' leaflet Project'])),
         (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵted"](null, ['\n  '])),
         (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵeld"](0, null, null, 0, 'i', [
             [
@@ -2506,7 +2506,7 @@ function View_HomeComponent_0(l) {
         (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵted"](null, ['\n'])),
         (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵeld"](0, null, null, 6, 'div', [[
                 'class',
-                'col-xs-offset-4 col-xs-5'
+                'col-xs-offset-4 col-xs-4'
             ]
         ], null, null, null, null, null)),
         (l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵted"](null, ['\n  '])),
@@ -2558,7 +2558,7 @@ function View_HomeComponent_Host_0(l) {
     }, null);
 }
 var HomeComponentNgFactory = __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵccf"]('app-home', __WEBPACK_IMPORTED_MODULE_3__app_components_home_home_component__["a" /* HomeComponent */], View_HomeComponent_Host_0, {}, {}, []);
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL21udC8yQTIyQTI0MTIyQTIxMjNEL3dvcmsvbXl3ZWJzaXRlL2FuZ3VsYXItc3JjL3NyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50Lm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL21udC8yQTIyQTI0MTIyQTIxMjNEL3dvcmsvbXl3ZWJzaXRlL2FuZ3VsYXItc3JjL3NyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LnRzIiwibmc6Ly8vbW50LzJBMjJBMjQxMjJBMjEyM0Qvd29yay9teXdlYnNpdGUvYW5ndWxhci1zcmMvc3JjL2FwcC9jb21wb25lbnRzL2hvbWUvaG9tZS5jb21wb25lbnQuaHRtbCIsIm5nOi8vL21udC8yQTIyQTI0MTIyQTIxMjNEL3dvcmsvbXl3ZWJzaXRlL2FuZ3VsYXItc3JjL3NyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LnRzLkhvbWVDb21wb25lbnRfSG9zdC5odG1sIl0sInNvdXJjZXNDb250ZW50IjpbIiAiLCI8ZGl2IGNsYXNzPVwianVtYm90cm9uIHRleHQtY2VudGVyXCI+XG4gIDxoMT5Bd2Vzb21lIEdJUyBCbG9nPC9oMT5cbiAgPGg0IGNsYXNzPVwibGVhZFwiPiBHSVMgUHJvamVjdDwvaDQ+XG4gIDxpIGNsYXNzPVwiZmEgZmEtdW5pdmVyc2l0eSBmYS01eFwiIGlkPVwiTWFpbkljb25cIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG48L2Rpdj5cbjxkaXYgY2xhc3M9XCJjb2wteHMtb2Zmc2V0LTQgY29sLXhzLTVcIj5cbiAgPGJ1dHRvbiBjbGFzcz1cImJ0biBidG4tcHJpbWFyeSBidG4tYmxvY2tcIiBbcm91dGVyTGlua109XCJbJy9tYXAnXVwiPmNoZWNrIHRoZSBtYXA8L2J1dHRvbj5cbjwvZGl2PlxuIiwiPGFwcC1ob21lPjwvYXBwLWhvbWU+Il0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O01DQUE7UUFBQTtRQUFBO01BQUE7SUFBQTtJQUFtQztJQUNqQztJQUFJO0lBQXFCO01BQ3pCO1FBQUE7UUFBQTtNQUFBO0lBQUE7SUFBaUI7SUFBaUI7SUFDbEM7TUFBQTtRQUFBO1FBQUE7TUFBQTs7TUFBQTtRQUFBO1FBQUE7TUFBQTs7TUFBQTtRQUFBO1FBQUE7TUFBQTs7SUFBQTtLQUFBO0lBQXVFO0lBQ25FO01BQ047UUFBQTtRQUFBO01BQUE7SUFBQTtJQUFzQztNQUNwQztRQUFBO1FBQUE7TUFBQTtNQUFBO1FBQUE7UUFBQTtNQUFBO0lBQUE7TUFBQTtNQUFBO1FBQUE7UUFBQTtNQUFBO01BQUE7SUFBQTtnQkFBQTs7O01BQUE7UUFBQTtRQUFBO01BQUE7Ozs7SUFBQTtPQUFBO1FBQUE7UUFBQTtNQUFBO0lBQUE7Z0JBQTBDO0lBQXdCO0lBQXNCO0lBQ3BGOzs7SUFEc0M7SUFBMUMsVUFBMEMsU0FBMUM7Ozs7O0lDTkY7Z0JBQUE7OztJQUFBOzs7In0=
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL21udC8yQTIyQTI0MTIyQTIxMjNEL3dvcmsvbXl3ZWJzaXRlL2FuZ3VsYXItc3JjL3NyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50Lm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL21udC8yQTIyQTI0MTIyQTIxMjNEL3dvcmsvbXl3ZWJzaXRlL2FuZ3VsYXItc3JjL3NyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LnRzIiwibmc6Ly8vbW50LzJBMjJBMjQxMjJBMjEyM0Qvd29yay9teXdlYnNpdGUvYW5ndWxhci1zcmMvc3JjL2FwcC9jb21wb25lbnRzL2hvbWUvaG9tZS5jb21wb25lbnQuaHRtbCIsIm5nOi8vL21udC8yQTIyQTI0MTIyQTIxMjNEL3dvcmsvbXl3ZWJzaXRlL2FuZ3VsYXItc3JjL3NyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LnRzLkhvbWVDb21wb25lbnRfSG9zdC5odG1sIl0sInNvdXJjZXNDb250ZW50IjpbIiAiLCI8ZGl2IGNsYXNzPVwianVtYm90cm9uIHRleHQtY2VudGVyXCI+XG4gIDxoMT5Bd2Vzb21lIEdJUzwvaDE+XG4gIDxwIGNsYXNzPVwibGVhZFwiPiBsZWFmbGV0IFByb2plY3Q8L3A+XG4gIDxpIGNsYXNzPVwiZmEgZmEtdW5pdmVyc2l0eSBmYS01eFwiIGlkPVwiTWFpbkljb25cIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG48L2Rpdj5cbjxkaXYgY2xhc3M9XCJjb2wteHMtb2Zmc2V0LTQgY29sLXhzLTRcIj5cbiAgPGJ1dHRvbiBjbGFzcz1cImJ0biBidG4tcHJpbWFyeSBidG4tYmxvY2tcIiBbcm91dGVyTGlua109XCJbJy9tYXAnXVwiPmNoZWNrIHRoZSBtYXA8L2J1dHRvbj5cbjwvZGl2PlxuIiwiPGFwcC1ob21lPjwvYXBwLWhvbWU+Il0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O01DQUE7UUFBQTtRQUFBO01BQUE7SUFBQTtJQUFtQztJQUNqQztJQUFJO0lBQWdCO01BQ3BCO1FBQUE7UUFBQTtNQUFBO0lBQUE7SUFBZ0I7SUFBb0I7SUFDcEM7TUFBQTtRQUFBO1FBQUE7TUFBQTs7TUFBQTtRQUFBO1FBQUE7TUFBQTs7TUFBQTtRQUFBO1FBQUE7TUFBQTs7SUFBQTtLQUFBO0lBQXVFO0lBQ25FO01BQ047UUFBQTtRQUFBO01BQUE7SUFBQTtJQUFzQztNQUNwQztRQUFBO1FBQUE7TUFBQTtNQUFBO1FBQUE7UUFBQTtNQUFBO0lBQUE7TUFBQTtNQUFBO1FBQUE7UUFBQTtNQUFBO01BQUE7SUFBQTtnQkFBQTs7O01BQUE7UUFBQTtRQUFBO01BQUE7Ozs7SUFBQTtPQUFBO1FBQUE7UUFBQTtNQUFBO0lBQUE7Z0JBQTBDO0lBQXdCO0lBQXNCO0lBQ3BGOzs7SUFEc0M7SUFBMUMsVUFBMEMsU0FBMUM7Ozs7O0lDTkY7Z0JBQUE7OztJQUFBOzs7In0=
 //# sourceMappingURL=home.component.ngfactory.js.map
 
 /***/ }),
