@@ -1,4 +1,16 @@
 div[role="main"]{
   overflow:auto;
-  margin: 7% auto 7% auto;
+  margin: 0% auto;
+}
+app-navbar{
+  position: fixed;
+  margin: 0%;  
+  top:0px;
+  height: 7%
+}
+app-footer{
+  position: fixed;
+  margin: 0%;  
+  bottom: 0px;
+  height: 7%
 }

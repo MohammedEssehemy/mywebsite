@@ -16,14 +16,15 @@ import { MessageComponent } from './components/message/message.component';
 import { ContactComponent } from './components/contact/contact.component'
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-
-// services
-import { MessagesService } from "./services/messages.service";
-import { UsersService } from "./services/users.service";
-import { UsersGuard } from "./guards/users.guard";
 import { FooterComponent } from './components/footer/footer.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MapComponent } from './components/map/map.component';
+
+// services
+import { MessagesService } from "./services/messages.service";
+import { BookmarksService } from "./services/bookmarks.service";
+import { UsersService } from "./services/users.service";
+import { UsersGuard } from "./guards/users.guard";
 
 
 const appRoutes:Routes = [
@@ -58,7 +59,7 @@ const appRoutes:Routes = [
     FlashMessagesModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [MessagesService, UsersService, UsersGuard],
+  providers: [MessagesService, BookmarksService, UsersService, UsersGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

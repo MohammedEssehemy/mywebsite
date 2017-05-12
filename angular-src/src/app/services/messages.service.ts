@@ -7,7 +7,7 @@ import { UsersService } from "./users.service";
 @Injectable()
 export class MessagesService {
 
-  token ;
+  token = this.usersService.getToken(); ;
 
 
   sendMessage(msg: Message){
@@ -17,7 +17,6 @@ export class MessagesService {
   }
 
   getMessages(){
-      this.token = this.usersService.getToken();
      let headers = new Headers();
     headers.append('x-access-token',this.token);
    return  this.http.get('api/msgs',{headers:headers}).map( res => res.json());

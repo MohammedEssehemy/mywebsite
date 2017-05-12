@@ -11,9 +11,10 @@ const config = require('config');
 //reauire routes
 const messages = require('./routes/messages');
 const users = require('./routes/users');
-
+const bookmarks = require('./routes/bookmarks');
 
 // connect to mongo
+mongoose.Promise = global.Promise;
 mongoose.connect(config.DBMongo);
 // mongo connected successfully
 mongoose.connection.on('connected',()=>{
@@ -47,6 +48,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // backend APIs
 app.use('/api/msgs',messages);
 app.use('/api/users',users);
+app.use('/api/bookmarks',bookmarks);
+
 // frontend Router
 app.use('*',(req,res,next)=>{
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

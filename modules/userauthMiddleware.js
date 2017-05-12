@@ -13,13 +13,13 @@ module.exports =(req, res, next) => {
                 });
             } else {
                 User.findById(decoded.userId, (err, user) => {
-                    if (user && user.admin) {
+                    if (user ) {
                         req.decoded = decoded;
                         next();
                     } else {
                         return res.status(403).send({
                             success: false,
-                            message: 'Admins area.'
+                            message: 'Users only.'
                         });
                     }
                 })

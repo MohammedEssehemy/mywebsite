@@ -1,119 +1,160 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { BookmarksService } from "../../services/bookmarks.service";
+import { Bookmark } from "../../models/bookmark";
 import * as L from 'leaflet';
-import * as WMS from 'leaflet.wms' ;
-import * as Locate from "leaflet.locatecontrol";
-import  "leaflet-fullscreen";
+import * as WMS from "leaflet.wms";
+import "leaflet.locatecontrol";
+import "leaflet-fullscreen";
+import "leaflet-easybutton";
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css', '../../../../node_modules/leaflet/dist/leaflet.css',
-  '../../../../node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css','../../../../node_modules/leaflet-fullscreen/dist/leaflet.fullscreen.css'],
+    '../../../../node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css',
+    '../../../../node_modules/leaflet-fullscreen/dist/leaflet.fullscreen.css',
+    '../../../../node_modules/leaflet-easybutton/src/easy-button.css'
+  ],
   encapsulation: ViewEncapsulation.None
 })
+
 export class MapComponent implements OnInit {
 
   map: L.Map;
   centerPoint: L.LatLng;
+  bookmarks: Bookmark[];
 
-
-  constructor() { }
+  constructor(private bookmarksService: BookmarksService) { }
 
   ngOnInit() {
-    (<any>L.Control).Locate = Locate;
     (<any>L).WMS = WMS;
-      this.centerPoint = new L.LatLng(30.049642, 31.256021);
-      // this.getcurrentLocation();
-      this.initializeMap();
+    this.centerPoint = new L.LatLng(30.049642, 31.256021);
 
- 
+    this.initializeMap();
   }
 
-//   getcurrentLocation() {
-//     /// get user location /////
-//       if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(showPosition.bind(this), showPositionError.bind(this));
-//       } else {
-//         alert("Geolocation is not supported by this browser.");
-//       }
-//   function showPosition(position) {
-//      this.centerPoint = new L.LatLng(position.coords.latitude, position.coords.longitude);
-//      this.updateMap();
-//         }
-//  function  showPositionError(error) {
-//       switch (error.code) {
-//         case error.PERMISSION_DENIED:
-//           alert("User denied the request for Geolocation.")
-//           break;
-//         case error.POSITION_UNAVAILABLE:
-//           alert("Location information is unavailable.")
-//           break;
-//         case error.TIMEOUT:
-//           alert("The request to get user location timed out.")
-//           break;
-//         case error.UNKNOWN_ERROR:
-//           alert("An unknown error occurred.")
-//           break;
-//       }
-//     }
-  // }
-   
-  initializeMap(){
-       // set up the map
-    this.map = new L.Map('map');
+  initializeMap() {
 
-    // create the tile layer with correct attribution
+    // set up the map
+    this.map = new L.Map('map', { minZoom: 7, maxZoom: 14 });
+    this.map.setView(this.centerPoint, 12);
+
+    // create the tile layer with correct attribution for osm
     let osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     let osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-    let osm = new L.TileLayer(osmUrl, { minZoom: 4, maxZoom: 18, attribution: osmAttrib });
+    let osm = new L.TileLayer(osmUrl, { attribution: osmAttrib });
 
-    // start the map in South-East England
-    this.map.setView(this.centerPoint, 12);
-    this.map.addLayer(osm);
-    // let MySource = (<any>L).WMS.Source.extend({
-    // 'parseFeatureInfo': function(result, url){
-    //  result =  JSON.parse(result);
-    //     return JSON.stringify(result.features[0].properties);
-    // }
-    // });
-    let gridLayer =new (<any>L).WMS.Source("http://localhost:8080/geoserver/datalytics/wms?", 
-  {
-    'propertyName':'male',
-    'info_format':'text/html',
-    'format': 'image/png',
-    'transparent': true,
-  })
-gridLayer.addSubLayer('datalytics:egypt_grid')
-   gridLayer.addTo(this.map);
-let lc = new (<any>L.Control).Locate({
-   flyTo:true
-}).addTo(this.map);
-let fullScreenControl = new (<any>L.Control).Fullscreen({
-  pseudoFullscreen: true
-}).addTo(this.map);
-    ///  hacking  the marker icon problem in leaflet
+    let OpenTopoMap = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+    });
+    this.map.addLayer(OpenTopoMap);
+    let markerGroup = L.featureGroup();
+    markerGroup.addTo(this.map);
 
-    // let DefaultIcon = L.icon({
-    //   iconRetinaUrl: '/images/marker-icon-2x.png',
-    //   iconUrl: '../../../../node_modules/leaflet/dist/images/marker-icon.png',
-    //   shadowUrl: '../../../../node_modules/leaflet/dist/images/marker-shadow.png',
-    // });
 
-    // L.Marker.prototype.options.icon = DefaultIcon;
+    this.bookmarksService.getBookmarks().subscribe(res => {
+      if (res.bookmarks) {
+        this.bookmarks = res.bookmarks;
+        this.bookmarks.forEach(createMarkerFunction);
+      }
+    });
 
-    // function onMapClick(e) {
-    //   let marker = L.marker(e.latlng).addTo(this.map);
-    // }
-    // let circle = L.circle([51.3, 0.7], {
-    //   color: 'red',
-    //   fillColor: '#f03',
-    //   fillOpacity: 0.5,
-    //   radius: 500
-    // }).addTo(this.map);
-    // L.control.layers().addTo(this.map);
-    // this.map.on('click', onMapClick);
-  }
-  updateMap(){
-    this.map.setView(this.centerPoint, 9);
+    // wms extension for leaflet
+    let MySource = (<any>L).WMS.Source.extend({
+      // 'parseFeatureInfo': function(result, url){
+      //  result =  JSON.parse(result);
+      //     return JSON.stringify(result.features[0].properties);
+      // }
+    });
+    // gridLayer
+    let gridLayer = new MySource("api/mapserver?",
+      {
+        'propertyName': 'male',
+        'info_format': 'text/html',
+        'format': 'image/png',
+        'transparent': true,
+      })
+    gridLayer.addSubLayer('datalytics:egypt_grid')
+    // gridLayer.addTo(this.map);
+
+    // map controls
+    // locate control
+    let lc = new (<any>L.Control).Locate({
+      flyTo: true,
+      position: 'bottomright',
+      icon: 'fa fa-compass fa-lg'
+    }).addTo(this.map);
+    // full screen control
+    let fullScreenControl = new (<any>L.Control).Fullscreen({
+      pseudoFullscreen: true
+    }).addTo(this.map);
+
+    // google search controller
+
+    //layer control
+    var baseLayers = {
+      "openTopoMap": OpenTopoMap,
+      "OpenStreetMap": osm,
+    };
+    var overlays = {
+      "Markers": markerGroup,
+      // "Roads": roadsLayer
+    };
+    L.control.layers(baseLayers, overlays).addTo(this.map);
+
+    let mapclick_creatMarker = (e: L.MouseEvent) => {
+      let bookmark = {
+        lat: e.latlng.lat,
+        lng: e.latlng.lng,
+        title: "untitled"
+      }
+      this.bookmarksService.addBookmark(bookmark).subscribe(res => {
+        console.log(res);
+        createMarkerFunction(res.bookmark)
+      })
+    };
+
+
+
+    let createMarkerFunction = (bookmark: Bookmark) => {
+      let popup = L.popup({
+        // className: 'row'
+      }).setContent(`<h4 class="text-center">${bookmark.title}</h4>`)
+      let marker = L.marker([bookmark.lat, bookmark.lng], {
+        draggable: true,
+        title: bookmark.title,
+        riseOnHover: true,
+        icon: L.icon({
+          iconUrl: "assets/marker-icon.png"
+        })
+      }).bindPopup(popup);
+      markerGroup.addLayer(marker)
+      // this.bookmarksService.addBookmark(marker)
+
+    };
+    // easy buttons
+    let bookmarksButton = (<any>L).easyButton({
+      states: [{
+        stateName: 'default-state',        // name the state
+        icon: 'fa fa-map-marker fa-lg',               // and define its properties
+        title: 'click to add bookmark',      // like its title
+        onClick: (btn, map) => {
+          btn.state('bookmark-state');    // change state on click!
+          this.map.on('click', mapclick_creatMarker)
+        }
+      }, {
+        stateName: 'bookmark-state',
+        icon: 'fa fa-university fa-lg',
+        title: 'finish adding bookmark',
+        onClick: (btn, map) => {
+          this.map.off('click', mapclick_creatMarker);
+          // this.map.on('click',e=>console.log(e))
+          btn.state('default-state');    // change state on click!
+        }
+      }]
+    });
+    bookmarksButton.addTo(this.map);
+
+
   }
 }

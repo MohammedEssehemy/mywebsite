@@ -1,6 +1,7 @@
-#map{
+div#map{
     position: absolute;
-    top : 10%;
+    top : 7%;
+    left:0%;
     width : 100%;
-    height: 100%
+    height: 85%
 }
