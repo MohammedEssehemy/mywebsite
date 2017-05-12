@@ -5548,17 +5548,17 @@ var MessagesService = (function () {
     MessagesService.prototype.sendMessage = function (msg) {
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["Headers"]();
         headers.append('content-type', 'application/json');
-        return this.http.post('api/msgs', msg, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('/api/msgs', msg, { headers: headers }).map(function (res) { return res.json(); });
     };
     MessagesService.prototype.getMessages = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["Headers"]();
         headers.append('x-access-token', this.token);
-        return this.http.get('api/msgs', { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.get('/api/msgs', { headers: headers }).map(function (res) { return res.json(); });
     };
     MessagesService.prototype.deleteMessage = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["Headers"]();
         headers.append('x-access-token', this.token);
-        return this.http.delete("api/msgs/" + id, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.delete("/api/msgs/" + id, { headers: headers }).map(function (res) { return res.json(); });
     };
     MessagesService.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_http__["Http"] }, { type: __WEBPACK_IMPORTED_MODULE_2__users_service__["a" /* UsersService */] }]; };
     return MessagesService;
@@ -6260,25 +6260,25 @@ var BookmarksService = (function () {
         headers.append('content-type', 'application/json');
         headers.append('x-access-token', this.token);
         console.log(bookmark);
-        return this.http.post('http://localhost:9242/api/bookmarks', bookmark, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('/api/bookmarks', bookmark, { headers: headers }).map(function (res) { return res.json(); });
     };
     BookmarksService.prototype.getBookmarks = function () {
         this.token = this.usersService.getToken();
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["Headers"]();
         headers.append('x-access-token', this.token);
-        return this.http.get('http://localhost:9242/api/bookmarks', { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.get('/api/bookmarks', { headers: headers }).map(function (res) { return res.json(); });
     };
     BookmarksService.prototype.deleteBookmark = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["Headers"]();
         this.token = this.usersService.getToken();
         headers.append('x-access-token', this.token);
-        return this.http.delete("http://localhost:9242/api/bookmarks/" + id, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.delete("/api/bookmarks/" + id, { headers: headers }).map(function (res) { return res.json(); });
     };
     BookmarksService.prototype.editBookmark = function (id, bookmark) {
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["Headers"]();
         headers.append('x-access-token', this.token);
         headers.append('x-access-token', this.token);
-        return this.http.put("http://localhost:9242/api/bookmarks/" + id, { bookmark: bookmark }, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.put("/api/bookmarks/" + id, { bookmark: bookmark }, { headers: headers }).map(function (res) { return res.json(); });
     };
     BookmarksService.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_http__["Http"] }, { type: __WEBPACK_IMPORTED_MODULE_2__users_service__["a" /* UsersService */] }]; };
     return BookmarksService;
@@ -6490,12 +6490,12 @@ var UsersService = (function () {
     UsersService.prototype.authenticate = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["Headers"]();
         headers.append('content-type', 'application/json');
-        return this.http.post('http://localhost:9242/api/users/authenticate', user, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('/api/users/authenticate', user, { headers: headers }).map(function (res) { return res.json(); });
     };
     UsersService.prototype.register = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["Headers"]();
         headers.append('content-type', 'application/json');
-        return this.http.post('api/users/register', user, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('/api/users/register', user, { headers: headers }).map(function (res) { return res.json(); });
     };
     UsersService.prototype.storeToken = function (token) {
         localStorage.setItem('token', token);
