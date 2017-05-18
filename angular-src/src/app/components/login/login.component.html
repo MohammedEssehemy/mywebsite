@@ -1,6 +1,6 @@
 <app-loading *ngIf="busy" [message]="'sending Data'" ></app-loading>
     <form [formGroup]="userForm"  *ngIf="!busy"  (ngSubmit)="onSubmit($event)">
-    <legend>User Login</legend>
+    <legend>Login</legend>
 <fieldset>
       <!-- username -->
       <div class="form-group">

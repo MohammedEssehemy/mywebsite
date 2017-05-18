@@ -12,7 +12,6 @@ export class BookmarksService {
     let headers = new Headers();
     headers.append('content-type', 'application/json');
     headers.append('x-access-token', this.token);
-    console.log(bookmark)    
     return this.http.post('/api/bookmarks', bookmark, { headers: headers }).map(res => res.json());
   }
 
@@ -29,11 +28,12 @@ export class BookmarksService {
     headers.append('x-access-token', this.token);
     return this.http.delete(`/api/bookmarks/${id}`, { headers: headers }).map(res => res.json());
   }
-  editBookmark(id, bookmark:Bookmark) {
+  editBookmark(bookmark:Bookmark) {
     let headers = new Headers();
-    headers.append('x-access-token', this.token);
+    this.token = this.usersService.getToken();        
     headers.append('x-access-token', this.token);    
-    return this.http.put(`/api/bookmarks/${id}`, {bookmark},{ headers: headers }).map(res => res.json());
+    console.log(bookmark)
+    return this.http.put(`/api/bookmarks/${bookmark._id}`, bookmark,{ headers: headers }).map(res => res.json());
   }
 
   

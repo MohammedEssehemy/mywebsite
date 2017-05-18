@@ -5,11 +5,11 @@
       <div class="cta-desc">
         <h4>By: {{message.username}}</h4>
         <h5>{{message.email}}</h5>
-      <h6> {{message.time.toUTCString()}} </h6>        
+      <h5> {{message.time.toUTCString()}} </h5>        
         <p>{{message.body}}</p>
       </div>
     </div>
-    <div class="col-md-3 cta-button">
+    <div class="col-md-2 cta-button">
       <button  (click)="deleteClicked($event);" class="btn btn-lg btn-block btn-danger">Delete</button>
     </div>
   </div>

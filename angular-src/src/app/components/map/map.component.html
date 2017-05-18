@@ -1,1 +1,2 @@
+<app-popup id="myPopup" *ngIf="editedBookmark" (edited)="getMarkers($event);" [ngStyle]="{'top':editedBookmark.top,'left':editedBookmark.left}" [bookmark]="editedBookmark"></app-popup>
 <div id='map' ></div>

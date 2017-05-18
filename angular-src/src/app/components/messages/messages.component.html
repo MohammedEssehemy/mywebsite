@@ -1,2 +1,4 @@
 <app-loading *ngIf="loading" [message]="'fetching messages from server'" ></app-loading>
+<div id="messages">
 <app-message *ngFor="let message of messagesList" (deleted)="messageDeleted($event);" [message]="message" > Loading ...</app-message>
+</div>

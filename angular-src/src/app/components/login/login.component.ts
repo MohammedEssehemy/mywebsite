@@ -86,11 +86,11 @@ export class LoginComponent implements OnInit {
       if (response.success) {
         this.usersService.storeToken(response.token);
         this.usersService.storeUser(response.user);
-        this.flashMessagesService.show('redirecting to home', { cssClass: 'alert-success', timeout: 3000 });
+        this.flashMessagesService.show('Logged in successfully', { cssClass: 'alert-success', timeout: 1500 });
         this.router.navigate(['/']) ;
       } else {
         this.busy = false;
-        this.flashMessagesService.show(response.msg, { cssClass: 'alert-danger', timeout: 3000 });
+        this.flashMessagesService.show(response.msg, { cssClass: 'alert-danger', timeout: 1500 });
       }
 
     })

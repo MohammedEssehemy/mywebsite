@@ -25,6 +25,7 @@ import { MessagesService } from "./services/messages.service";
 import { BookmarksService } from "./services/bookmarks.service";
 import { UsersService } from "./services/users.service";
 import { UsersGuard } from "./guards/users.guard";
+import { PopupComponent } from './components/popup/popup.component';
 
 
 const appRoutes:Routes = [
@@ -49,7 +50,8 @@ const appRoutes:Routes = [
     RegisterComponent,
     FooterComponent,
     LoadingComponent,
-    MapComponent
+    MapComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
