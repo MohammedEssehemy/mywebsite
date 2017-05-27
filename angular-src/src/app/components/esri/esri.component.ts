@@ -186,17 +186,23 @@ export class EsriComponent implements OnInit {
 
   };
   getFeatures(from, count) {
-    if (from < count) {
+    
       this.esriService.query(null, null, false, this.queryIds.slice(from, from + 500)).subscribe(res => {
         from += 500;
         this.queryLayer.addData(res);
+        if (from < count) {
         this.flashMessagesService.show(`${from} features loaded out of ${count}`, {
           cssClass: 'alert-warning', timeout: 7500
         })
         this.getFeatures(from, count);
+      }
+      else{
+        this.flashMessagesService.show(`${count} features loaded out of ${count}`, {
+          cssClass: 'alert-warning', timeout: 7500
+        })
+      }
       })
     }
-  }
 
   initializeMap(loggedIn) {
 

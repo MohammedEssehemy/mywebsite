@@ -591,16 +591,21 @@ var EsriComponent = (function () {
     ;
     EsriComponent.prototype.getFeatures = function (from, count) {
         var _this = this;
-        if (from < count) {
-            this.esriService.query(null, null, false, this.queryIds.slice(from, from + 500)).subscribe(function (res) {
-                from += 500;
-                _this.queryLayer.addData(res);
+        this.esriService.query(null, null, false, this.queryIds.slice(from, from + 500)).subscribe(function (res) {
+            from += 500;
+            _this.queryLayer.addData(res);
+            if (from < count) {
                 _this.flashMessagesService.show(from + " features loaded out of " + count, {
                     cssClass: 'alert-warning', timeout: 7500
                 });
                 _this.getFeatures(from, count);
-            });
-        }
+            }
+            else {
+                _this.flashMessagesService.show(count + " features loaded out of " + count, {
+                    cssClass: 'alert-warning', timeout: 7500
+                });
+            }
+        });
     };
     EsriComponent.prototype.initializeMap = function (loggedIn) {
         var _this = this;
