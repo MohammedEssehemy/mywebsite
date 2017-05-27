@@ -19,22 +19,25 @@ import { RegisterComponent } from './components/register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MapComponent } from './components/map/map.component';
+import { PopupComponent } from './components/popup/popup.component';
+import { EsriComponent } from './components/esri/esri.component';
 
 // services
 import { MessagesService } from "./services/messages.service";
 import { BookmarksService } from "./services/bookmarks.service";
 import { UsersService } from "./services/users.service";
 import { UsersGuard } from "./guards/users.guard";
-import { PopupComponent } from './components/popup/popup.component';
+import { EsriService } from "./services/esri.service";
 
 
 const appRoutes:Routes = [
-  {path:'',component: HomeComponent},
+{path:'',component: HomeComponent},
 {path:'register',component:RegisterComponent},
 {path:'messages',component:MessagesComponent,canActivate:[UsersGuard]},
 {path:'login',component:LoginComponent},
 {path:'contact',component:ContactComponent},
 {path:'map',component:MapComponent},
+{path:'esrimap',component:EsriComponent},
 {path:'*',component: HomeComponent}
 ]
 @NgModule({
@@ -51,6 +54,7 @@ const appRoutes:Routes = [
     FooterComponent,
     LoadingComponent,
     MapComponent,
+    EsriComponent,
     PopupComponent
   ],
   imports: [
@@ -61,7 +65,7 @@ const appRoutes:Routes = [
     FlashMessagesModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [MessagesService, BookmarksService, UsersService, UsersGuard],
+  providers: [MessagesService, BookmarksService, UsersService, UsersGuard, EsriService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

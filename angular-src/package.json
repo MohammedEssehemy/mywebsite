@@ -24,6 +24,7 @@
     "angular2-flash-messages": "^1.0.8",
     "angular2-jwt": "^0.2.3",
     "core-js": "^2.4.1",
+    "esri-leaflet": "^2.0.8",
     "jquery": "^3.2.1",
     "leaflet": "^1.0.3",
     "leaflet-easybutton": "^2.2.0",

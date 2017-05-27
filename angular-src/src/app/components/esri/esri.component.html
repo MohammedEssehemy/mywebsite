@@ -1,0 +1,33 @@
+<app-loading id="loading" *ngIf="loading" [message]="'running Query on the server, Please be Patient'" ></app-loading>
+
+<app-popup id="myPopup" *ngIf="editedBookmark" (edited)="getMarkers($event);" [ngStyle]="{'top':editedBookmark.top,'left':editedBookmark.left}" [bookmark]="editedBookmark"></app-popup>
+
+<div id='map' ></div>
+<div id="query" >
+    <form >
+    
+    <div class="form-group">
+          <label for="drpfields">Field</label>
+          <select #selectedField id="drpfields">
+              <option *ngFor= "let field of fields" [value]="field.value"> {{field.display}}</option>
+          </select>
+     </div>
+ <div class="form-group">
+           <label for="queryInput">query</label>
+          <input type="text" id="queryInput" placeholder="='field value'" #query>
+    </div>
+    
+    <div class="form-group">
+           <label for="drpstastics">select Stastics</label>
+          <select #selectedStastic  id="drpstastics">
+              <option *ngFor= "let statistic of statistics" [value]="statistic.value"> {{statistic.display}}</option>
+          </select>
+    </div>
+    <input type="submit" class="btn btn-default" (click)="runQuery(selectedField.value,selectedStastic.value,query.value);" value="Submit" >
+    </form>
+    <div *ngFor="let result of queryResult" >
+        <div class="label label-default">
+        {{result.key}} : {{result.value}}    
+        </div>
+    </div>
+</div>
