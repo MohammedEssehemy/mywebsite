@@ -1184,7 +1184,7 @@ var EsriService = (function () {
     }
     EsriService.prototype.query = function (whereCondition, statistics, idsOnly, ids) {
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["Headers"]();
-        headers.append('Access-Control-Allow-Origin', '*');
+        // headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post("https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/0/query", "where=" + whereCondition + "&objectIds=" + ids.toString() + "&outFields=*&returnIdsOnly=" + idsOnly + "&outStatistics=" + JSON.stringify(statistics) + "&f=geojson", { headers: headers }).map(function (res) { return res.json(); });
     };
